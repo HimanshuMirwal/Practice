@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Colors } from "./Constants/Colors";
+import {Users as  localUser } from "./Constants/Users";
+
 import LoginSignup from "./Helper/Login_Signup";
+localStorage.setItem("User",JSON.stringify(localUser))
 const Login = () => {
     const [userEmail, setEmail]=useState("");
     const [userPassword, setPassword]=useState("");
@@ -12,7 +15,7 @@ const Login = () => {
         setPassword(password)
     }
     function Continue() {
-       let userData = JSON.parse(localStorage.getItem("User"));
+       let userData = JSON.parse(localStorage.getItem("User"))?JSON.parse(localStorage.getItem("User")):localUser;
        console.log(userData)
        let check = false;
        userData.map((data)=>{
